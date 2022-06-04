@@ -24,7 +24,7 @@
     "yarn": "^1.22.18"
   },
   "scripts": {
-    "start": "concurrently \"npm:start:renderer\" \"npm:build:main\" \"wait-on http://localhost:3000 && cross-env NODE_ENV=development electronmon .\"",
+    "start": "concurrently \"npm:start:renderer\" \"npm:build:main\" \"wait-on http://localhost:3000 && cross-env NODE_ENV=development electron .\"",
     "build": "react-app-rewired build",
     "test": "react-app-rewired test",
     "eject": "react-scripts eject",

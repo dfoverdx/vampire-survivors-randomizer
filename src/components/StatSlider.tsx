@@ -27,7 +27,7 @@ export interface StatSliderProps<T extends StatName> extends StatData<T> {
 
 const StatSlider = memo(<T extends StatName>({ icon, isPercentage, max, min, missingNoRange, name, onChange, step = 1, value }: StatSliderProps<T>) => {
   const handleChange = (value: Range) => {
-    value = _(value).sort().value() as Range;
+    value = value.sort((a, b) => a -b) as Range;
 
     if (isPercentage) {
       value = value.map(v => v / 100) as Range;
@@ -44,8 +44,6 @@ const StatSlider = memo(<T extends StatName>({ icon, isPercentage, max, min, mis
 
   const adjustedValue = isPercentage ? value.map(x => x * 100) as Range: value;
 
-  console.log(`Rendering ${name}`);
-
   const getValueText = (x: number) => `${x > 0 ? '+' : ''}${x}${isPercentage ? '%' : ''}`;
 
   const marks: Mark[] = _([min, 0, max, ...missingNoRange])
@@ -55,14 +53,17 @@ const StatSlider = memo(<T extends StatName>({ icon, isPercentage, max, min, mis
     .value();
 
   return <Grid container spacing={2}>
-    <IconItem item xs={1}><Icon src={icon} alt={name} /></IconItem>
-    <Grid item xs={8}>
+    <IconItem item><Icon src={icon} alt={name} /></IconItem>
+    <Grid item xs>
       <Typeography id={name + '-slider'} gutterBottom align="left">{name}</Typeography>
       <Grid container spacing={2}>
-        <Grid item xs={2}>
+        <Grid item>
           <Input
             inputProps={{ max, min, step, type: 'number' }}
-            onChange={e => handleChange([Number(e.currentTarget.value), value[1]])}
+            onChange={e => {
+              const val = Number(e.currentTarget.value);
+              handleChange([val, Math.max(val, adjustedValue[1])])
+            }}
             size="small"
             value={adjustedValue[0]}
           />
@@ -79,17 +80,20 @@ const StatSlider = memo(<T extends StatName>({ icon, isPercentage, max, min, mis
             value={adjustedValue}
           />
         </Grid>
-        <Grid item xs={2}>
+        <Grid item>
           <Input
             inputProps={{ max, min, step, type: 'number' }}
-            onChange={e => handleChange([value[0], Number(e.currentTarget.value)])}
+            onChange={e => {
+              const val = Number(e.currentTarget.value);
+              handleChange([Math.min(val, adjustedValue[0]), val])
+            }}
             size="small"
             value={adjustedValue[1]}
           />
         </Grid>
       </Grid>
     </Grid>
-    <IconItem item xs={1}>
+    <IconItem item>
       <Button
         title="Reset to missingN▯'s range"
         onClick={() => handleChange(missingNoRange)}

@@ -54,6 +54,7 @@ const statsData: { readonly [K in Stat]: StatData<Capitalize<K>>; } = {
     min: -1.3,
     max: 2,
     missingNoRange: [-1.3, 2],
+    step: 0.1,
   }),
   area: makeStatData({
     name: 'Area',
@@ -91,9 +92,9 @@ const statsData: { readonly [K in Stat]: StatData<Capitalize<K>>; } = {
   }),
   magnet: makeStatData({
     name: 'Magnet',
-    min: -.9,
+    min: -0.9,
     max: 2,
-    missingNoRange: [-.2, 1.8],
+    missingNoRange: [-0.2, 1.8],
     isPercentage: true,
   }),
   luck: makeStatData({
