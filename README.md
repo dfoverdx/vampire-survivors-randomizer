@@ -23,6 +23,7 @@ Roadmap
     * in-place
     * as a pre-play save for undoing deltas while maintaining newly collected eggs later
 - [ ] export seed file with speficied ranges
+- [ ] save all file values to `localStorage` as failsafe
 
 ### Derandomizing
 
@@ -36,11 +37,21 @@ Roadmap
 - [ ] save as current save file
 - [ ] delete pre-play save file
 
+### Rerandomizing
+
+- [ ] Derandomize
+- [ ] Randomize
+
 ### Miscellaneous
 
 - [ ] Flesh out readme
+- [ ] Restore save backup
+  - [ ] from file
+  - [ ] from `localStorage`
 - [ ] Options
   - [ ] apply different separate deltas to different characters
+  - [ ] confirm random values before applying deltas vs keep secret
+    - [ ] if set to confirm, create UI for confirmation values
 - [ ] Cheats
   - [ ] lock or unlock characters
   - [ ] lock or unlock weapons
