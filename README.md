@@ -1,43 +1,46 @@
-# Getting Started with Create React App
+Vampire Survivors Randomizer
+============================
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app) using [cra-template-typescript-electron](https://github.com/vixalie/cra-template-typescript-electron) template.
+**Work in progress**
 
-## Available Scripts
+This app abuses the golden egg feature to randomize character stats in a save file.
 
-In the project directory, you can run:
+Roadmap
+-------
 
-### `npm start`
+### Randomizing
 
-Runs the app in the development mode.\
-Electron will start automaticly when dev server is ready and [http://localhost:3000](http://localhost:3000) can be visited.
+- [x] adjust/specify ranges for values
+  - [x] use MissingNo's ranges
+- [ ] specify seed
+- [ ] alternatively, import seed file
+- [ ] alter save file
+  - [ ] create backup of current save file
+  - [ ] load a save file
+  - [ ] add or subtract random values to every character's egg values
+  - [ ] regenerate save file SHA
+  - [ ] save altered file twice
+    * in-place
+    * as a pre-play save for undoing deltas while maintaining newly collected eggs later
+- [ ] export seed file with speficied ranges
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### Derandomizing
 
-Electron will restart automaticly when you modified files in `src-main` directory.
+- [ ] load backup, current, and pre-play save files
+- [ ] calculate differences between current and pre-play values
+- [ ] apply differences to backup save file
+  - [ ] golden egg
+  - [ ] money
+  - [ ] all other character data
+- [ ] recalculate SHA
+- [ ] save as current save file
+- [ ] delete pre-play save file
 
-### `npm test`
+### Miscellaneous
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-DO NOT run this command directly, it is not enough to distribute a application only by building the renderer.
-
-### `npm run dist:*`
-
-Distribute application to the `dist` folder. `*` can be replace by `win`, `mac` or `linux`. It will build the renderer and main scripts, and then use [electron-builder](https://www.electron.build/) to package them into distributable.
-
-### `npm run fix:electron`
-
-When you encountered the error called 'Electron failed to install correctly', you will need this command to reinstall Electron module.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+- [ ] Flesh out readme
+- [ ] Options
+  - [ ] apply different separate deltas to different characters
+- [ ] Cheats
+  - [ ] lock or unlock characters
+  - [ ] lock or unlock weapons
