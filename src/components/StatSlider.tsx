@@ -101,7 +101,7 @@ const StatSlider = memo(<T extends StatName>({ icon, isPercentage, max, min, mis
         <Icon alt="Reset to missingN▯'s range" src={missingNo} />
       </Button>
     </IconItem>
-  </Grid>
+  </Grid>;
 });
 
 export default StatSlider;
